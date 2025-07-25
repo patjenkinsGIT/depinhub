@@ -1,25 +1,33 @@
-name: Notion Sync
+name: Sync Guides from Notion
 
 on:
   workflow_dispatch:
+  schedule:
+    - cron: "0 * * * *"  # Runs every hour
 
 jobs:
   sync-guides:
     runs-on: ubuntu-latest
+    name: Sync Guides to Notion
+
     steps:
-      - name: Checkout code
+      - name: Checkout repo
         uses: actions/checkout@v3
 
-      - name: Set up Node.js
+      - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
           node-version: 18
 
       - name: Install dependencies
-        run: npm install
+        run: npm ci
 
-      - name: Run Notion Sync Script
+      - name: Run Notion Sync
+        run: node scripts/notion-sync.js
         env:
           NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
           NOTION_DATABASE_ID: ${{ secrets.NOTION_DATABASE_ID }}
-        run: node scripts/notion-sync.js
+
+      - name: Notify on Failure
+        if: failure()
+        run: echo "❌ Notion sync failed. Check logs above." 

@@ -7,6 +7,8 @@ export const projects = [
     affiliateLinks: {
       buyHardware: "https://heliumdeploy.io/ref=yourref",
       getCrypto: "https://coinbase.com/join/yourref",
+      difficulty: "Easy",
+      category: "Wireless",
     },
   },
   {
@@ -17,6 +19,8 @@ export const projects = [
     affiliateLinks: {
       buyHardware: "https://dabba.network/your-ref",
       getCrypto: "https://cointracker.io/signup?ref=yourref",
+      difficulty: "Easy",
+      category: "ISP / Connectivity",
     },
   },
 ];
