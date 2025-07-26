@@ -14,7 +14,7 @@ export default function GuidesIndex() {
     return {
       slug,
       title: metadata.title || slug.replace(/-/g, " "),
-      description: metadata.description || "",
+      excerpt: metadata.excerpt || "",
     };
   });
 
@@ -30,8 +30,8 @@ export default function GuidesIndex() {
             >
               {guide.title}
             </Link>
-            {guide.description && (
-              <p className="text-gray-600 text-sm">{guide.description}</p>
+            {guide.excerpt && (
+              <p className="text-gray-600 text-sm">{guide.excerpt}</p>
             )}
           </li>
         ))}

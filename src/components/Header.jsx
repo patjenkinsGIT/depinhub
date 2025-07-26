@@ -23,6 +23,15 @@ export default function Header() {
         <Link to="/intro" className="hover:underline hover:text-indigo-200">
           What is DePIN?
         </Link>
+        <Link to="/resources" className="hover:underline hover:text-indigo-200">
+          Resources
+        </Link>
+        <Link to="/about" className="hover:underline hover:text-indigo-200">
+          About
+        </Link>
+        <Link to="/privacy" className="hover:underline hover:text-indigo-200">
+          Privacy
+        </Link>
       </nav>
     </header>
   );

@@ -1,5 +1,5 @@
 // src/pages/GuideReader.jsx
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { loadGuide } from "../utils/loadGuides";
 import { MDXProvider } from "@mdx-js/react";
@@ -26,6 +26,15 @@ export default function GuideReader() {
       <MDXProvider>
         <Content />
       </MDXProvider>
+
+      <div className="mt-12 text-center">
+        <Link
+          to="/guides"
+          className="inline-block text-indigo-600 hover:underline text-sm"
+        >
+          ← Back to Guides
+        </Link>
+      </div>
     </div>
   );
 }
