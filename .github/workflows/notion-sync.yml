@@ -36,18 +36,21 @@ jobs:
         env:
           NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
           NOTION_DATABASE_ID: ${{ secrets.NOTION_DATABASE_ID }}
-        
+     
       - name: Commit and Push if Changes
-        run: git config --global user.email "action@github.com"
-             git config --global user.name "GitHub Action"
-             git add src/guides/
-             if ! git diff --cached --quiet; then
-                git commit -m "🔄 Auto-sync guides from Notion"
-                git push
-             else
-                echo "No content changes to commit."
-             fi
+        run: |
+          git config --global user.email "action@github.com"
+          git config --global user.name "GitHub Action"
+          git add src/guides/
+          git status
+          CHANGED=$(git status --porcelain)
 
+          if [[ -n "$CHANGED" ]]; then
+            git commit -m "🔄 Auto-sync guides from Notion"
+            git push
+          else
+            echo "No changes to commit."
+          fi
 
       - name: Notify on Failure
         if: failure()
